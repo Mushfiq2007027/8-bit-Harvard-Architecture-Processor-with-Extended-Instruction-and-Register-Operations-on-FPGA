@@ -1,0 +1,38 @@
+// =============================================================
+// program.mem  -  COMPLETE 18-OPERATION DEMO PROGRAM
+// 8-bit Harvard Architecture CPU - Basys3 FPGA
+// =============================================================
+// Initial registers after BTNU reset:
+//   R0 = 0x00  R1 = 0x0A (10)  R2 = 0x03 (3)  R3 = 0x00
+// =============================================================
+// --- GROUP 1: ARITHMETIC ---
+06  // [00] ADD  R1, R2   R1 = 0x0A + 0x03 = 0x0D (13)
+16  // [01] SUB  R1, R2   R1 = 0x0D - 0x03 = 0x0A (10)
+24  // [02] INC  R1       R1 = 0x0A + 1    = 0x0B (11)
+34  // [03] DEC  R1       R1 = 0x0B - 1    = 0x0A (10)  ? back to 10!
+// --- GROUP 2: LOGIC ---
+46  // [04] AND  R1, R2   R1 = 0x0A & 0x03 = 0x02
+56  // [05] OR   R1, R2   R1 = 0x02 | 0x03 = 0x03
+66  // [06] XOR  R1, R2   R1 = 0x03 ^ 0x03 = 0x00  Z=1!
+74  // [07] NOT  R1       R1 = ~0x00       = 0xFF  S=1!
+77  // [08] CLR  R1       R1 = 0x00                Z=1!
+// --- GROUP 3: SHIFT & ROTATE ---
+88  // [09] SHL  R2       R2 = 0x03 << 1   = 0x06
+98  // [0A] SHR  R2       R2 = 0x06 >> 1   = 0x03  C=0
+B8  // [0B] ROL  R2       R2 = rol(0x03,1) = 0x06  C=0
+C8  // [0C] ROR  R2       R2 = ror(0x06,1) = 0x03  C=0
+// --- GROUP 4: ARITHMETIC SHIFT RIGHT (sign extension demo) ---
+// Setup: get 0x80 (1000 0000) into R0 to show sign extension
+70  // [0D] NOT  R0       R0 = ~0x00 = 0xFF
+90  // [0E] SHR  R0       R0 = 0xFF >> 1 = 0x7F  C=1 (bit0 was 1)
+70  // [0F] NOT  R0       R0 = ~0x7F = 0x80  (1000 0000)  S=1!
+A0  // [10] ASHR R0       R0 = 0x80 >>> 1 = 0xC0 (1100 0000)  sign preserved! S=1
+// --- GROUP 5: EXTENDED MATH  (MUL, SQR, CUBE, DIV) ---
+// Re-init: ADD R1,R2 ? R1 = 0x00+0x03 = 0x03  (R1 was 0 after CLR at [08])
+06  // [11] ADD  R1, R2   R1 = 0x00 + 0x03 = 0x03 (reset R1 to 3)
+D6  // [12] MUL  R1, R2   R1 = 0x03 x 0x03 = 0x09 (9)
+97  // [13] SQR  R1       R1 = 9^2         = 81 = 0x51
+8B  // [14] CUBE R2       R2 = 3^3         = 27 = 0x1B
+A6  // [15] DIV  R1, R2   R1 = 81 / 27     = 0x03 (exact! no remainder)
+// --- HALT ---
+FF  // [16] HALT

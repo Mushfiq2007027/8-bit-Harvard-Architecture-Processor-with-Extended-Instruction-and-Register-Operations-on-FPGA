@@ -1,0 +1,90 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
+| Date         : Sat Apr 11 16:43:35 2026
+| Host         : DESKTOP-71N9T96 running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file top_module_control_sets_placed.rpt
+| Design       : top_module
+| Device       : xc7a35t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    12 |
+|    Minimum number of control sets                        |    12 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    16 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    12 |
+| >= 0 to < 4        |     1 |
+| >= 4 to < 6        |     1 |
+| >= 6 to < 8        |     2 |
+| >= 8 to < 10       |     6 |
+| >= 10 to < 12      |     0 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |     2 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               1 |            1 |
+| No           | No                    | Yes                    |               3 |            3 |
+| No           | Yes                   | No                     |              49 |           14 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |              75 |           45 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------+---------------------------------+------------------+------------------+----------------+--------------+
+|  Clock Signal  |          Enable Signal          | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+---------------------------------+------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG |                                 |                  |                1 |              1 |         1.00 |
+|  cpu_clk_BUFG  | cpu/exec_z                      | reset_IBUF       |                4 |              4 |         1.00 |
+|  cpu_clk_BUFG  |                                 | reset_IBUF       |                5 |              7 |         1.40 |
+|  cpu_clk_BUFG  | cpu/FSM_onehot_state[5]_i_1_n_0 | reset_IBUF       |                2 |              7 |         3.50 |
+|  cpu_clk_BUFG  | cpu/p_0_in                      | reset_IBUF       |                4 |              8 |         2.00 |
+|  cpu_clk_BUFG  | cpu/alu_result_r                | reset_IBUF       |                5 |              8 |         1.60 |
+|  cpu_clk_BUFG  | cpu/rf/registers[3][7]_i_1_n_0  | reset_IBUF       |                5 |              8 |         1.60 |
+|  cpu_clk_BUFG  | cpu/rf/registers[1][7]_i_1_n_0  | reset_IBUF       |                5 |              8 |         1.60 |
+|  cpu_clk_BUFG  | cpu/rf/registers[0][7]_i_1_n_0  | reset_IBUF       |                7 |              8 |         1.14 |
+|  cpu_clk_BUFG  | cpu/rf/registers[2][7]_i_1_n_0  | reset_IBUF       |                6 |              8 |         1.33 |
+|  cpu_clk_BUFG  | cpu/ir                          | reset_IBUF       |                7 |             16 |         2.29 |
+|  clk_IBUF_BUFG |                                 | reset_IBUF       |               12 |             45 |         3.75 |
++----------------+---------------------------------+------------------+------------------+----------------+--------------+
+
+
