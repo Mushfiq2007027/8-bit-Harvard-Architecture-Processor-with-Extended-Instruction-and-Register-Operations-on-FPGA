@@ -293,6 +293,12 @@ The CPU ships with an 18-instruction demonstration program that exercises every 
   [16]   FF   HALT                   CPU stops; LED[15:12] = 0xF
 ```
 
+## Demo Video
+
+Watch the processor running on real FPGA hardware:
+
+[![Watch the demo](https://img.youtube.com/vi/0D2HFEzq8hU/0.jpg)](https://youtu.be/0D2HFEzq8hU)
+
 **Initial Register State (after BTNU reset):**
 - R0 = `0x00`
 - R1 = `0x0A` (decimal 10)
